@@ -1,0 +1,36 @@
+--------------------------------------------------
+Code example: generating a heap dump via code
+--------------------------------------------------
+    const heapdump = require('heapdump');
+
+    // Check if request is authorized 
+    function isAuthorized(req) {
+        // ...
+    }
+
+    router.get('/ops/heapdump', (req, res, next) => {
+        if (!isAuthorized(req)) {
+            return res.status(403).send('You are not authorized!');
+        }
+
+        logger.info('About to generate heapdump');
+
+        heapdump.writeSnapshot((err, filename) => {
+            console.log('heapdump file is ready to be sent to the caller', filename);
+            fs.readFile(filename, 'utf-8', (err, data) => {
+                res.end(data);
+            });
+        });
+    });
+
+
+--------------------------------------------------
+Local Modules
+--------------------------------------------------
+https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
+https://github.com/ArnaudRinquin/local_modules_poc
+
+--------------------------------------------------
+Server Setup,PM2, Performance optimization
+--------------------------------------------------
+https://medium.com/tech-tajawal/process-manager-pm2-performance-optimization-part-ii-6ca8e431a578
