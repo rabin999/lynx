@@ -1,9 +1,9 @@
 import request from "supertest"
-import App from "../src/app"
+import App from "../app/app"
 
 const app = new App().app
-describe("GET /api/v1", () => {
-    it("should reeturn 200 ok", async (done: any) => {
+describe("GET /api/v1 -> ", () => {
+    it("should return 200 ok", async (done: any) => {
         const result = await request(app).get('/api/v1');
         expect(result.status).toBe(200);
         done();

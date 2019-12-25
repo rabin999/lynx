@@ -29,8 +29,4 @@ Local Modules
 --------------------------------------------------
 https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
 https://github.com/ArnaudRinquin/local_modules_poc
-
---------------------------------------------------
-Server Setup,PM2, Performance optimization
---------------------------------------------------
-https://medium.com/tech-tajawal/process-manager-pm2-performance-optimization-part-ii-6ca8e431a578
+https://docs.npmjs.com/creating-and-publishing-private-packages#creating-a-private-package

@@ -1,0 +1,17 @@
+{
+    "app_host": "https://fuse-bulletin-api.fusemachines.com",
+    "app_name": "Fuse Bulletin",
+    "port": 3000,
+    "database": {
+        "name": "fuse-bulletin-prod",
+        "host": "10.0.0.10",
+        "port": 27118,
+        "username": "bulletin-prod-usr",
+        "password": "gdhWRe8X+bv3e6XXq",
+        "authenticationDatabase": "fuse-bulletin-prod"
+    },
+    "session_secret": "bf6c8733-3e63-434f-9c0e-78b5279c9927",
+    "client_secret": "dad81f02-6b13-498a-b2d2-618580741ab9",
+    "cors_origin": "https://*.fusemachines.com",
+    "csp_src": "https://*.fusemachines.com"
+}
