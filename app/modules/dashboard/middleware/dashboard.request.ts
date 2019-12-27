@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import HttpException from "../../../exceptions/HttpException"
-
+import HttpException from "../../../global/exception/HttpException"
 
 const validation = async (req: Request, res: Response, next: NextFunction) => {
 

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import HttpException from "../../../exceptions/HttpException"
-import Dashboard from "../model/dashboard.model"
+import HttpException from "../../../global/exception/HttpException"
 
 class DashboardController {
 

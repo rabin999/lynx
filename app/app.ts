@@ -69,6 +69,7 @@ class App {
      */
     private initializeRoutes()
     {
+        this.app.get('/health', (request, response) => response.status(200).json(config))
         this.app.use("/api/v1", this.routes)
     }
 }

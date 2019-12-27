@@ -1,7 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express"
 import DashboardController from "../controller/dashboard.controller"
-import DashboardRequest from "../request/dashboard.request"
-import RoleMiddleware from "../../../middleware/role.middleware"
+import DashboardRequest from "../middleware/dashboard.request"
 
 class DesignationRoutes {
 

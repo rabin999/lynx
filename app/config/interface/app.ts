@@ -5,4 +5,5 @@ export default interface AppConfigInterface {
     allowed_hosts?: string[] | number[]
     protocol: string;
     ssl: boolean;
+    maintenance: boolean;
 }

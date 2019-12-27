@@ -5,5 +5,6 @@ export default <AppConfigInterface> {
     port: 443,
     debug: false,
     protocol: 'http2',
-    ssl: true
+    ssl: true,
+    maintenance: false
 }
