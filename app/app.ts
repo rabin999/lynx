@@ -1,5 +1,4 @@
 import express from "express"
-import expressValidator from "express-validator"
 import compression from "compression"
 import bodyParser from "body-parser"
 import lusca from "lusca"
@@ -8,70 +7,58 @@ import config from "./config"
 import Routes from "./global/route/v1"
 import errorMiddleware from "./global/middleware/error.middleware"
 
-class App {
+const app: express.Application = express()
+let routes:any = new Routes().route;
 
-    public app: express.Application
-    public routes: any
-
-    constructor ()
-    {
-        this.app = express()
-        this.routes = new Routes().route
-
-        this.initializeMiddlewares()
-        this.initializeErrorHandling()
-        this.initializeRoutes()
-    }
+/**
+ * Express configuration
+ */
+function initializeMiddlewares() {
+    app.use(compression())
+    // * express body parser
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
 
     /**
-     * Express configuration
+     * Security headers
+     * 
      */
-    private initializeMiddlewares()
-    {
-        this.app.use(compression())
-        // * express body parser
-        this.app.use(bodyParser.json())
-        this.app.use(bodyParser.urlencoded({ extended: true }))
-        this.app.use(expressValidator())
-
-       /**
-         * Security headers
-         * 
-         */
-        this.app.use(lusca.xframe("SAMEORIGIN"))
-        this.app.use(lusca.xssProtection(true))
-        this.app.use(lusca.nosniff())
-        this.app.use(lusca.csp({
-            policy: {
-                'default-src': config.csp_src ? `'self' ${config.csp_src}` : '*',
-                'img-src': "*",
-                'style-src': '*'
-            }
-        }))
-        this.app.use(lusca.referrerPolicy('same-origin'))
-        this.app.use(lusca.hsts({
-            maxAge: 31536000,
-            includeSubDomains: true
-        }))
-        this.app.disable('x-powered-by')
-        this.app.use(cors({
-            origin: config.cors_origin
-        }))
-    }
-
-    private initializeErrorHandling()
-    {
-        this.app.use(errorMiddleware)
-    }
-
-    /**
-     * Routes
-     */
-    private initializeRoutes()
-    {
-        this.app.get('/health', (request, response) => response.status(200).json(config))
-        this.app.use("/api/v1", this.routes)
-    }
+    app.use(lusca.xframe("SAMEORIGIN"))
+    app.use(lusca.xssProtection(true))
+    app.use(lusca.nosniff())
+    app.use(lusca.csp({
+        policy: {
+            'default-src': config.csp_src ? `'self' ${config.csp_src}` : '*',
+            'img-src': "*",
+            'style-src': '*'
+        }
+    }))
+    app.use(lusca.referrerPolicy('same-origin'))
+    app.use(lusca.hsts({
+        maxAge: 31536000,
+        includeSubDomains: true
+    }))
+    app.disable('x-powered-by')
+    app.use(cors({
+        origin: config.cors_origin
+    }))
 }
 
-export default App
+function initializeErrorHandling()
+{
+    app.use(errorMiddleware)
+}
+
+/**
+ * Routes
+ */
+function initializeRoutes() {
+    app.get('/health', (request: express.Request, response: express.Response) => response.status(200).json(config))
+    app.use("/api/v1", routes)
+}
+
+initializeMiddlewares()
+initializeErrorHandling()
+initializeRoutes()
+
+export default app

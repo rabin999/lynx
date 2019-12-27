@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express"
+import { Router } from "express"
 import { readdir } from "fs";
 import * as path from "path";
 import FileNotFoundException from "../exception/FileNotFoundException";

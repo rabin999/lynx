@@ -10,7 +10,9 @@ const configurations: any = {
     production
 }
 
-const environment = process.env.APP_ENVIRONMENT || 'development'
+process.env.APP_ENVIRONMENT = "development"
+const environment = process.env.APP_ENVIRONMENT
+
 if (!(environment in configurations)) {
     throw new Error('Environment not found');   
 }

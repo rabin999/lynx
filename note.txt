@@ -30,3 +30,10 @@ Local Modules
 https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
 https://github.com/ArnaudRinquin/local_modules_poc
 https://docs.npmjs.com/creating-and-publishing-private-packages#creating-a-private-package
+
+
+--------------------------------------------------
+DEBUG nodejs server
+--------------------------------------------------
+https://www.npmjs.com/package/debug
+DEBUG=* node server.js
