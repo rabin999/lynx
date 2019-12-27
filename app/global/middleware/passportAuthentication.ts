@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express"
-import HttpException from "../exceptions/HttpException"
-import NotAuthorized from "../exceptions/NotAuthorizedException"
+import HttpException from "../exception/HttpException"
+import NotAuthorized from "../exception/NotAuthorizedException"
 import passport from "passport"
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => {

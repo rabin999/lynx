@@ -5,7 +5,7 @@ import bodyParser from "body-parser"
 import lusca from "lusca"
 import cors from "cors"
 import config from "./config"
-import Routes from "./global/routes/v1"
+import Routes from "./global/route/v1"
 import errorMiddleware from "./global/middleware/error.middleware"
 
 class App {

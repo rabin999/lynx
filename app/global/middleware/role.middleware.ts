@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import Unauthorized from "../exceptions/NotAuthorizedException"
+import Unauthorized from "../exception/NotAuthorizedException"
 
 const roleMiddleware = (roles: Array<String>, options: object = {}) => {
     return (request: Request, response: Response, next: NextFunction) => {
