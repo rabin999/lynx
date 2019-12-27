@@ -37,3 +37,21 @@ DEBUG nodejs server
 --------------------------------------------------
 https://www.npmjs.com/package/debug
 DEBUG=* node server.js
+
+--------------------------------------------------
+CURL request for https on localhost
+--------------------------------------------------
+curl --cacert ssl_certificate/localhost-cert.pem https://localhost:3030/health
+
+
+--------------------------------------------------
+HTTP2 load testing - h2load
+--------------------------------------------------
+https://blog.josephscott.org/2019/02/14/h2load-on-ubuntu-18-04/
+If Nothing to be done for `install-exec-am' 
+-> change ./configure --enable-app => ./configure --enable-app --prefix=/usr
+
+--------------------------------------------------
+Kill specific port
+--------------------------------------------------
+sudo kill -9 $(sudo lsof -t -i:<port-number>)
