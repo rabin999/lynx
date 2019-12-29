@@ -7,19 +7,8 @@ class DashboardController {
      * GET /dashboards
      * Get all dashboard
      */
-    index = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-            res.send("This is dashboard page")
-
-        }
-        catch (error) {
-            const err = new HttpException({
-                status: 500,
-                message: error.toString()
-            })
-            res.status(500).json(err.parse())
-        }
+    index = (req: any, res: any) => {
+        res.send("This is dashboard page")
     }
 
     /**
@@ -28,9 +17,8 @@ class DashboardController {
      *
      * @param  {Request} req
      * @param  {Response} res
-     * @param  {NextFunction} next
      */
-    public create = async (req: Request, res: Response, next: NextFunction) => {
+    public create = (req: any, res: any) => {
 
         try {
             res.send('dashboard create page')
@@ -52,7 +40,7 @@ class DashboardController {
      * @param  {Response} res
      * @param  {NextFunction} next
      */
-    public delete = async (req: Request, res: Response, next: NextFunction) => {
+    public delete = (req: any, res: any) => {
 
         try {
             res.send("Dashboard delete page")

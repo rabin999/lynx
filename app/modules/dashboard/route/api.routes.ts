@@ -1,25 +1,26 @@
-import { Router, Request, Response, NextFunction } from "express"
 import DashboardController from "../controller/dashboard.controller"
-import DashboardRequest from "../middleware/dashboard.request"
+import HttpException from "../../../global/exception/HttpException"
 
-class DesignationRoutes {
+export default function(fastify: any, opts: any, done: any) {
+    // this._route.get("/", RoleMiddleware(["admin"]), new DashboardController().index)
+    fastify.get("/", { 
+        onRequest: function (request:any, reply:any, done:any) {
+            const authorized = true
+            if (authorized) {
+                request.log.info('This hook will always be executed after the shared `onRequest` hooks')
+                done()
+            } else {
+                const errs = new HttpException({
+                    status: 422,
+                    message: "User is not authorized"
+                })
+                reply.code(422).send(errs.parse())
+            }
+        } 
+    }, new DashboardController().index)
 
-    public _route: any
+    fastify.post("/create", new DashboardController().create)
+    fastify.delete("/:id/delete", new DashboardController().delete)
 
-    constructor ()
-    {
-        this._route = Router()
-
-        // this._route.get("/", RoleMiddleware(["admin"]), new DashboardController().index)
-        this._route.get("/", new DashboardController().index)
-        this._route.post("/create", DashboardRequest, new DashboardController().create)
-        this._route.delete("/:id/delete", new DashboardController().delete)
-    }
-
-    get route()
-    {
-        return this._route
-    }
+    done()
 }
-
-export default DesignationRoutes

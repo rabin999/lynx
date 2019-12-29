@@ -1,16 +1,12 @@
 import express from "express"
 import * as http2 from 'http2'
 import fastify, { FastifyRequest, FastifyReply } from "fastify"
-import lusca from "lusca"
-import cors from "cors"
 import config from "./config"
 import Routes from "./global/route/v1"
-import errorMiddleware from "./global/middleware/error.middleware"
 import fs from 'fs'
 import path from 'path'
 
 const app: express.Application = express()
-let routes: any = new Routes().route;
 const fastifyApp = fastify({
     logger: true,
     http2: true,
@@ -21,19 +17,29 @@ const fastifyApp = fastify({
     }
 })
 
- /**
- * Security headers
- * 
- * Use fastify helmet
- */
+/**
+* Security headers
+* 
+* Use fastify helmet
+*/
+const isAuthorized = (): boolean => {
+    return true
+}
 
-// Declare a route
-fastifyApp.get('/health', (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
-    response.code(200).send(config)
-})
+/* 
+    Critical for application but it will take twice heap size than it defines at V8
+*/
+fastifyApp.get('/ops/heapdump', (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
+    if (!isAuthorized()) {
+        response.code(403).send('You are not authorized!');
+    }
+    const heapdump = require('heapdump')
+    heapdump.writeSnapshot((err: any, filename: any) => {});
+    response.send('completed')
+});
 
-// Run the server!
-fastifyApp.listen(3030, function (err, address) {
+
+fastifyApp.listen(4000, function (err, address) {
     if (err) {
         fastifyApp.log.error(err)
         process.exit(1)
@@ -42,48 +48,16 @@ fastifyApp.listen(3030, function (err, address) {
 })
 
 /**
- * Express configuration
- */
-function initializeMiddlewares() {
-    /**
-     * Security headers
-     * 
-     */
-    app.use(lusca.xframe("SAMEORIGIN"))
-    app.use(lusca.xssProtection(true))
-    app.use(lusca.nosniff())
-    app.use(lusca.csp({
-        policy: {
-            'default-src': config.csp_src ? `'self' ${config.csp_src}` : '*',
-            'img-src': "*",
-            'style-src': '*'
-        }
-    }))
-    app.use(lusca.referrerPolicy('same-origin'))
-    app.use(lusca.hsts({
-        maxAge: 31536000,
-        includeSubDomains: true
-    }))
-    app.disable('x-powered-by')
-    app.use(cors({
-        origin: config.cors_origin
-    }))
-}
-
-function initializeErrorHandling() {
-    app.use(errorMiddleware)
-}
-
-/**
  * Routes
  */
 function initializeRoutes() {
-    app.get('/health', (request: express.Request, response: express.Response) => response.status(200).json(config))
-    app.use("/api/v1", routes)
+    fastifyApp.get('/', (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
+      response.code(200).send(config)
+    })
+
+    fastifyApp.register(Routes, { prefix: '/v1' })
 }
 
-initializeMiddlewares()
-initializeErrorHandling()
 initializeRoutes()
 
 export default app
