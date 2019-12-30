@@ -6,5 +6,6 @@ export default <AppConfigInterface> {
     debug: false,
     protocol: 'http2',
     ssl: true,
-    maintenance: false
+    maintenance: false,
+    enableCluster: false
 }

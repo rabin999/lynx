@@ -6,4 +6,5 @@ export default interface AppConfigInterface {
     protocol: string;
     ssl: boolean;
     maintenance: boolean;
+    enableCluster: boolean;
 }
