@@ -1,2 +1,2 @@
-# TP
+# Lynx
 Scalable NodeJS Architecture
