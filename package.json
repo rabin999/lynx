@@ -1,5 +1,5 @@
 {
-  "name": "sandbox",
+  "name": "lynx",
   "version": "1.0.0",
   "description": "NodeJS scalable architecture",
   "main": "app.js",
@@ -17,17 +17,27 @@
     "serve-debug": "nodemon --inspect dist/bin/www/server.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
-  "author": "FuseMachines",
-  "license": "ISC",
+  "author": "Rabin Bhandari <rabin.bhandari999@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "fastify",
+    "helmet",
+    "security",
+    "headers",
+    "x-frame-options",
+    "csp",
+    "hsts",
+    "clickjack"
+  ],
   "dependencies": {
     "@types/heapdump": "^0.3.1",
     "@types/pino": "^5.15.1",
+    "appmetrics-dash": "^5.3.0",
     "appmetrics-prometheus": "^3.1.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fastify": "^2.11.0",
-    "fastify-helmet": "^3.0.2",
     "heapdump": "^0.3.15",
     "lusca": "^1.6.1",
     "pino": "^5.15.0",

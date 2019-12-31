@@ -55,3 +55,8 @@ If Nothing to be done for `install-exec-am'
 Kill specific port
 --------------------------------------------------
 sudo kill -9 $(sudo lsof -t -i:<port-number>)
+
+--------------------------------------------------
+Generate SSL keys
+--------------------------------------------------
+openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' -keyout ssl_certificate/localhost-privkey.pem -out ssl_certificate/localhost-cert.pem

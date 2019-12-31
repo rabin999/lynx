@@ -1,13 +1,20 @@
 import app from "../../app"
+import config from "../../config"
 
-function startServer(): void {
-    app.listen(8080, () => {
+function startServer(): void {    
+    app.listen(config.app.port, (err, address) => {
         console.log(
-            "App is running at %s:%d in %s mode",
+            "App is running on %s:%d in %s mode",
             'localhost',
-            8080,
+            config.app.port,
             process.env.APP_ENVIRONMENT
         )
+
+        if (err) {
+            app.log.error(err)
+            process.exit(1)
+        }
+        
         console.log("Press CTRL-C to stop\n")
     })
 }
