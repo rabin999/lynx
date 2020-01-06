@@ -1,15 +1,13 @@
 import fs from 'fs'
 import path from 'path'
 import * as http2 from 'http2'
-
 import fastify, { FastifyRequest, FastifyReply } from 'fastify'
-import Routes from './global/route/v1'
 
 // Global Routes
+import Routes from './global/route/v1'
 import healthRoute from "./global/route/health"
 
 const app = fastify({
-    // logger: true,
     http2: true,
     https: {
         allowHTTP1: true,   // fallback support for HTTP1
@@ -18,6 +16,7 @@ const app = fastify({
     }
 })
 
+// fastify.use(fastifyHelmet)
 /**
  * Routes
  */
@@ -34,7 +33,7 @@ function initializeRoutes() {
     app.register(healthRoute)
     // maintainence end point for different version api
 
-    app.register(Routes, { prefix: '/v1' })
+    app.register(Routes, { prefix: '/v1' }) 
 }
 
 initializeRoutes()
