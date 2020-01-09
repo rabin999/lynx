@@ -1,10 +1,10 @@
 import AppConfigInterface from '../../interface/app'
 
 export default <AppConfigInterface> {
-    url: "",
-    port: 443,
-    debug: false,
     protocol: 'http1',
+    host: "localhost",
+    port: 8080,
+    debug: false,
     ssl: false,
     maintenance: false,
     enableCluster: false

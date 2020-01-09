@@ -1,5 +1,5 @@
 export default interface AppConfigInterface {
-    url: string;
+    host: string;
     port: number;
     debug: boolean;
     allowed_hosts?: string[] | number[]

@@ -6,7 +6,7 @@ import production from './envrionments/production'
 const configurations: any = {
     development,
     staging,
-    qa,
+    qa, 
     production
 }
 

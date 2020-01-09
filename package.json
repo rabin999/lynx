@@ -1,5 +1,5 @@
 {
-  "name": "sandbox",
+  "name": "lynx",
   "version": "1.0.0",
   "description": "NodeJS scalable architecture",
   "main": "app.js",
@@ -17,11 +17,16 @@
     "serve-debug": "nodemon --inspect dist/bin/www/server.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
-  "author": "FuseMachines",
-  "license": "ISC",
+  "author": "Rabin Bhandari <rabin.bhandari999@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "fastify",
+    "security"
+  ],
   "dependencies": {
     "@types/heapdump": "^0.3.1",
     "@types/pino": "^5.15.1",
+    "appmetrics-dash": "^5.3.0",
     "appmetrics-prometheus": "^3.1.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -31,24 +36,22 @@
     "heapdump": "^0.3.15",
     "lusca": "^1.6.1",
     "pino": "^5.15.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.7.4"
   },
   "devDependencies": {
-    "@types/compression": "0.0.36",
-    "@types/cors": "^2.8.5",
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^4.17.0",
-    "@types/jest": "^24.0.13",
-    "@types/lusca": "^1.5.0",
-    "@types/node": "^12.0.8",
-    "@types/supertest": "^2.0.7",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.25",
+    "@types/lusca": "^1.6.1",
+    "@types/node": "^12.12.22",
+    "@types/supertest": "^2.0.8",
     "chai": "^4.2.0",
-    "concurrently": "^4.1.0",
-    "dotenv": "^8.0.0",
-    "jest": "^24.8.0",
-    "nodemon": "^1.19.1",
+    "concurrently": "^4.1.2",
+    "dotenv": "^8.2.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
     "supertest": "^4.0.2",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.17.0"
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1"
   }
 }

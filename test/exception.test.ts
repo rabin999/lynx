@@ -1,4 +1,4 @@
-import HttpException from "../src/exceptions/HttpException"
+import HttpException from "../app/global/exception/HttpException"
 
 describe('Testing HTTP Exception Class', () => {
     const exception = new HttpException({
