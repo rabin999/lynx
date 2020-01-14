@@ -6,4 +6,5 @@ export default <DatabaseConfigInterface> {
     user: "prod_user",
     password: "Tn1234!@#$$",
     database: 'tp_prod',
+    debug: false
 }

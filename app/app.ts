@@ -25,14 +25,7 @@ function initializeRoutes() {
         response.code(200).send({ status: "UP" })
     })
 
-    // app.addHook('onSend', (request, reply, payload, done) => {
-    //     reply.header('header', 'value')
-    //     done()
-    // })
-
     app.register(healthRoute)
-    // maintainence end point for different version api
-
     app.register(Routes, { prefix: '/v1' }) 
 }
 

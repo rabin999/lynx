@@ -5,6 +5,7 @@ export default interface DatabaseConfigInterface {
     password: string;
     database: string;
     engine: string;
+    debug: boolean;
     pool?: {
         min: number;
         max: number;

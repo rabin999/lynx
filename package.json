@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node dist/bin/www/server.js",
     "seed": "concurrently -k \"npm run build-ts\" \"node dist/services/database/seeder.js\"",
-    "serve": "npx nodemon dist/server.js",
-    "watch-node": "nodemon dist/server.js",
+    "serve": "npx nodemon dist/bin/www/server.js",
+    "watch-node": "nodemon dist/bin/www/server.js",
     "test": "jest --colors --forceExit --verbose --detectOpenHandles",
     "test-coverage": "jest --colors --forceExit --coverage --verbose --detectOpenHandles",
     "watch-test": "npm run test -- --watchAll",
@@ -35,6 +35,7 @@
     "fastify-helmet": "^3.0.2",
     "heapdump": "^0.3.15",
     "lusca": "^1.6.1",
+    "mysql2": "^2.1.0",
     "pino": "^5.15.0",
     "typescript": "^3.7.4"
   },
