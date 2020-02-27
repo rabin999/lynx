@@ -1,10 +1,15 @@
 import DatabaseConfigInterface from "../../interface/database"
 
-export default <DatabaseConfigInterface> {
+const database: DatabaseConfigInterface = {
     host: "localhost",
     port: 3306,
-    user: "root",
-    password: "Tn1234!@#$$",
-    database: 'tp_prod',
-    debug: false
+    user: "employee",
+    password: "password@1",
+    database: "employees",
+    debug: true,
+    pool: {
+        min: 25
+    }
 }
+
+export default database

@@ -10,7 +10,7 @@ class HttpException extends Error implements HttpExceptionInterface {
      * @param  {object} params
      * @param  {object={}} options
      */
-    constructor(params: ParamsInterface, options: any = {}) {
+    constructor(params: ParamsInterface, options: {} = {}) {
         super(params.message)
         this.params = params
         this.options = options

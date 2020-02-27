@@ -1,10 +1,13 @@
-import AppConfigInterface from '../../interface/app'
+import AppConfigInterface from "../../interface/app"
 
-export default <AppConfigInterface> {
+const app: AppConfigInterface = {
     host: "localhost",
-    port: 8080,
-    protocol: 'http2',
+    protocol: "http2",
+    port: 8000,
     debug: false,
     maintenance: false,
-    enableCluster: true
+    enableCluster: false
 }
+
+
+export default app

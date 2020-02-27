@@ -25,6 +25,15 @@ Code example: generating a heap dump via code
 
 
 --------------------------------------------------
+Maintenance Endpoint
+--------------------------------------------------
+Instead, I create maintenance Git branches for each running API version. For example:
+master: the current API version (e.g 1.4)
+maintenance/1.3: the code of 1.3.x version
+maintenance/1.2: the code of 1.2.x version
+
+
+--------------------------------------------------
 Local Modules
 --------------------------------------------------
 https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
@@ -43,6 +52,11 @@ CURL request for https on localhost
 --------------------------------------------------
 curl --cacert ssl_certificate/localhost-cert.pem https://localhost:3030/health
 
+TLS HandShake
+-------------
+curl -v --cacert ssl_certificate/localhost-cert.pem https://localhost:8080/health
+nghttp -nsv https://localhost:8080/health
+
 
 --------------------------------------------------
 HTTP2 load testing - h2load
@@ -50,6 +64,22 @@ HTTP2 load testing - h2load
 https://blog.josephscott.org/2019/02/14/h2load-on-ubuntu-18-04/
 If Nothing to be done for `install-exec-am' 
 -> change ./configure --enable-app => ./configure --enable-app --prefix=/usr
+
+Command:
+-n
+The number of total requests. Default: 1
+-c
+The number of concurrent clients. Default: 1
+-m
+The max concurrent streams to issue per client. Default: 1
+
+-> h2load -n100000 -c1000 -m50 https://localhost:8080
+
+--------------------------------------------------
+HTTP2 Max Concurrent Streams
+--------------------------------------------------
+https://http2.github.io/http2-spec/ -> SETTINGS_MAX_CONCURRENT_STREAMS (0x3):
+
 
 --------------------------------------------------
 Kill specific port
@@ -60,3 +90,11 @@ sudo kill -9 $(sudo lsof -t -i:<port-number>)
 Generate SSL keys
 --------------------------------------------------
 openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' -keyout ssl_certificate/localhost-privkey.pem -out ssl_certificate/localhost-cert.pem
+
+
+--------------------------------------------------
+NodeJS Profiling
+--------------------------------------------------
+APP_ENVIRONMENT=development node --prof dist/bin/www/server.js
+node --prof-process <filename.log>
+https://nodejs.org/en/docs/guides/simple-profiling/

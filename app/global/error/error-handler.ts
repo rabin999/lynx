@@ -1,5 +1,5 @@
-import pino from 'pino'
-let logger = pino()
+import pino from "pino"
+const logger = pino()
 
 function sendMailToAdminIfCritical() {}
 function saveInOpsQueueIfCritical() {}
@@ -14,4 +14,4 @@ class ErrorHandler {
     }
 }
 
-export const handler = new ErrorHandler();
+export default new ErrorHandler();

@@ -1,7 +1,7 @@
 import app from "../../app"
 import config from "../../config"
-import cluster from 'cluster';
-import os from 'os';
+import cluster from "cluster";
+import os from "os";
 
 function runServerOnCLuster(): void {
     const numCPUs = os.cpus().length
@@ -14,7 +14,7 @@ function runServerOnCLuster(): void {
             cluster.fork();
         }
 
-        cluster.on('exit', (worker: any, code: any, signal: any) => {
+        cluster.on("exit", (worker: any, code: any, signal: any) => {
             console.log(`worker ${worker.process.pid} died`);
         });
     } else {
@@ -30,7 +30,7 @@ function startServer(): void {
     app.listen(config.app.port, (err, address) => {
         console.log(
             "App is running on %s:%d in %s mode",
-            'localhost',
+            "localhost",
             config.app.port,
             process.env.APP_ENVIRONMENT
         )
@@ -45,11 +45,11 @@ function startServer(): void {
 }
 
 if (config.app.enableCluster) {
-    const line = "========================================="
+    runServerOnCLuster()
+
+    const line = "============================================"
     const consoleMessage = "Application is running under cluster mode"
     console.log(`%s\n %s\n%s\n`, line, consoleMessage, line)
-
-    runServerOnCLuster()
 } else {
     startServer()
 }

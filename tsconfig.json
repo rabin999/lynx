@@ -2,18 +2,17 @@
     "compilerOptions": {
         "module": "commonjs",
         "esModuleInterop": true,
-        "target": "es6",
+        "target": "es2017",
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": false,
-        "outDir": "dist/",
-        "baseUrl": ".",
+        "outDir": "./dist",
+        "baseUrl": "./",
         "resolveJsonModule": true,
         "extendedDiagnostics": true,
         "paths": {
             "*": [
                 "node_modules/*",
-                // "src/types/*"
             ]
         }
     },

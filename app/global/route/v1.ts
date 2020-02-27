@@ -2,7 +2,7 @@ import { readdir } from "fs";
 import * as path from "path";
 import FileNotFoundException from "../exception/FileNotFoundException";
 
-const MODULE_PATH = '../../modules'
+const MODULE_PATH = "../../modules"
 
 export default function(fastify: any, opts: any, done: any) {
     // init all api routes without manuall including
@@ -13,10 +13,10 @@ export default function(fastify: any, opts: any, done: any) {
         }
 
         items.forEach(item => {
-            
+
             /**
-             * Fetch all component routes from component folder within routes folder 
-             * 
+             * Fetch all component routes from component folder within routes folder
+             *
              */
             const pathDir: string = path.resolve(__dirname, `${MODULE_PATH}/${item}/route/api.routes`);
 
@@ -28,11 +28,11 @@ export default function(fastify: any, opts: any, done: any) {
                 fastify.register(ModuleRoute.default, { prefix: `/${item}` })
             })
             .catch(err => {
-                console.error("Can't find route file %s", err.toString())
+                console.warn("Can't find route file %s", err.toString())
             })
             .finally(() => {
                 done()
-            }) 
+            })
         })
     });
 }

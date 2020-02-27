@@ -1,8 +1,7 @@
-import { FastifyRequest, FastifyReply } from "fastify"
-import http2 from "http2"
+import { LynxRequest, LynxResponse } from "../service/route/types";
 
 export default function(fastify: any, opts: any, done: any) {
-    fastify.get("/health", function (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) {
+    fastify.get("/health", function (request: LynxRequest, response: LynxResponse) {
         response.code(200).send({
             status: "UP"
         })

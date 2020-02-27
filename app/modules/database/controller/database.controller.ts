@@ -5,17 +5,9 @@ class DatabaseController {
         res.send("Database part")
     }
 
-    users(req: any, res: any) {
-        DatabaseConnection.query(
-            'SELECT * FROM `employees` limit 30',
-            function (err: any, results: any, fields: any) {
-                if(err) {
-                    res.code(500).send(err)
-                } else {
-                    res.send(results)
-                }
-            }
-        );
+    async users(req: any, res: any) {
+        const [rows, _] = await DatabaseConnection.query("SELECT * FROM `employees` Limit 30")
+        res.send(rows)
     }
 }
 

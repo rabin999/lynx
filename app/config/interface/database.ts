@@ -4,10 +4,10 @@ export default interface DatabaseConfigInterface {
     user: string;
     password: string;
     database: string;
-    engine: string;
+    engine?: string;
     debug: boolean;
     pool?: {
-        min: number;
-        max: number;
+        min?: number;
+        max?: number;
     };
 }
