@@ -3,8 +3,6 @@ export default interface AppConfigInterface {
     port: number;
     debug: boolean;
     allowed_hosts?: string[] | number[]
-    protocol: string;
-    ssl: boolean;
     maintenance: boolean;
     enableCluster: boolean;
 }

@@ -1,5 +1,6 @@
 {
     "rules": {
+        "no-empty-interface": true,
         "class-name": true,
         "comment-format": [
             true,

@@ -10,3 +10,5 @@ export default {
     i18n,
     mail
 }
+
+

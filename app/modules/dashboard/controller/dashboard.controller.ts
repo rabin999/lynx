@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express"
-import HttpException from "../../../global/exception/HttpException"
+import HttpException from "../../../global/exception/HttpException";
+import { LynxRequest, LynxResponse } from "../../../global/service/route/types";
 
 class DashboardController {
 
@@ -7,8 +7,8 @@ class DashboardController {
      * GET /dashboards
      * Get all dashboard
      */
-    index = (req: any, res: any) => {
-        res.send("This is dashboard page")
+    index = (request: LynxRequest, response: LynxResponse) => {
+        response.send("This is dashboard page")
     }
 
     /**
@@ -18,17 +18,17 @@ class DashboardController {
      * @param  {Request} req
      * @param  {Response} res
      */
-    public create = (req: any, res: any) => {
+    create = (request: LynxRequest, response: LynxResponse) => {
 
         try {
-            res.send('dashboard create page')
+            response.send('dashboard create page')
         }
         catch (error) {
             const err = new HttpException({
                 status: 500,
                 message: error.toString()
             })
-            res.status(500).json(err.parse())
+            response.code(500).send(err.parse())
         }
     }
 
@@ -40,17 +40,17 @@ class DashboardController {
      * @param  {Response} res
      * @param  {NextFunction} next
      */
-    public delete = (req: any, res: any) => {
+    delete = (request: LynxRequest, response: LynxResponse) => {
 
         try {
-            res.send("Dashboard delete page")
+            response.send("Dashboard delete page")
         }
         catch (error) {
             const err = new HttpException({
                 status: 500,
                 message: error.toString()
             })
-            res.status(500).json(err.parse())
+            response.code(500).send(err.parse())
         }
     }
 }
