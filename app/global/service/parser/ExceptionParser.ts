@@ -10,21 +10,20 @@ class ExceptionParser implements ExceptionParserInterface {
 
     /**
      * Parse instance of Error | array of error object
-     * 
+     *
      * @returns object
      */
-    parse () : object
-    {
+    parse (): object {
         if (typeof this.errors.message !== "string" && this.isMessageIterable()) {
             const errs = []
-            for (let error of this.errors.message) {
+            for (const error of this.errors.message) {
                 errs.push({
                     status: 422,
                     title: typeof error.location !== undefined ? error.location : "",
                     message: typeof error.msg !== undefined ? error.msg : ""
                 })
             }
-            
+
             return {
                 errors: errs
             }
@@ -40,8 +39,7 @@ class ExceptionParser implements ExceptionParserInterface {
         }
     }
 
-    isMessageIterable(): boolean
-    {
+    isMessageIterable(): boolean {
         return this.errors.message && typeof this.errors.message[Symbol.iterator] === "function"
     }
 }

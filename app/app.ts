@@ -1,7 +1,8 @@
 import fs from "fs"
 import path from "path"
-import * as http2 from "http2"
-import fastify, { FastifyRequest, FastifyReply } from "fastify"
+import fastify from "fastify"
+import fastify_rate_limit from "fastify-rate-limit"
+import { LynxRequest, LynxResponse } from "./global/service/route/types";
 
 // Global Routes
 import Routes from "./global/route/v1"
@@ -13,18 +14,23 @@ const app = fastify({
         allowHTTP1: true,   // fallback support for HTTP1
         key: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-privkey.pem")),
         cert: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-cert.pem"))
-    }
+    },
+    logger: true
 })
 
-// fastify.use(fastifyHelmet)
+// Initalize Rate Limiting Middleware
+app.register(fastify_rate_limit, {
+    max: 100,
+    timeWindow: '1 minute'
+})
+
 /**
  * Routes
  */
 function initializeRoutes() {
-    // app.get('/', (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
-    //     response.code(200).send({ status: "UP" })
-    // })
-    // /api/health
+    app.get('/', (request: LynxRequest, response: LynxResponse) => {
+        response.code(200).send({ status: "UP" })
+    })
     app.register(healthRoute)
     app.register(Routes, { prefix: "/v1" })
 }

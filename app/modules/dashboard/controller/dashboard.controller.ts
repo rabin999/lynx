@@ -1,6 +1,5 @@
-import HttpException from "../../../global/exception/HttpException"
-import * as http2 from 'http2'
-import { FastifyRequest, FastifyReply } from 'fastify'
+import HttpException from "../../../global/exception/HttpException";
+import { LynxRequest, LynxResponse } from "../../../global/service/route/types";
 
 class DashboardController {
 
@@ -8,7 +7,7 @@ class DashboardController {
      * GET /dashboards
      * Get all dashboard
      */
-    index = (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
+    index = (request: LynxRequest, response: LynxResponse) => {
         response.send("This is dashboard page")
     }
 
@@ -19,7 +18,7 @@ class DashboardController {
      * @param  {Request} req
      * @param  {Response} res
      */
-    create = (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
+    create = (request: LynxRequest, response: LynxResponse) => {
 
         try {
             response.send('dashboard create page')
@@ -41,7 +40,7 @@ class DashboardController {
      * @param  {Response} res
      * @param  {NextFunction} next
      */
-    delete = (request: FastifyRequest<http2.Http2ServerRequest>, response: FastifyReply<http2.Http2ServerResponse>) => {
+    delete = (request: LynxRequest, response: LynxResponse) => {
 
         try {
             response.send("Dashboard delete page")

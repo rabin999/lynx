@@ -1,6 +1,8 @@
 import fs from "fs"
-import i18n from "../../config"
-console.log(i18n)
+import path from "path"
+import config from "../../config"
 
-const lang = "env"
-export default  lang
+const rawdata:any = fs.readFileSync(path.resolve(__dirname, `${config.i18n.locale}.json`))
+const lang = JSON.parse(rawdata);
+
+export default lang

@@ -1,13 +1,14 @@
 import DatabaseConnection from "../../../global/service/database/connection"
+import { LynxRequest, LynxResponse } from "../../../global/service/route/types";
 
 class DatabaseController {
-    index(req: any, res: any) {
-        res.send("Database part")
+    index(request: LynxRequest, response: LynxResponse) {
+        response.send("Database part")
     }
 
-    async users(req: any, res: any) {
+    async users(request: LynxRequest, response: LynxResponse) {
         const [rows, _] = await DatabaseConnection.query("SELECT * FROM `employees` Limit 30")
-        res.send(rows)
+        response.send(rows)
     }
 }
 

@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "fastify": "^2.11.0",
     "fastify-helmet": "^3.0.2",
+    "fastify-rate-limit": "^3.0.1",
     "heapdump": "^0.3.15",
     "lusca": "^1.6.1",
     "mysql2": "^2.1.0",
@@ -49,7 +50,6 @@
     "@types/lusca": "^1.6.1",
     "@types/node": "^12.12.22",
     "@types/supertest": "^2.0.8",
-    "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "dotenv": "^8.2.0",
     "husky": "^4.2.3",
@@ -63,7 +63,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier:check"
+      "pre-commit": "npm run test"
     }
   }
 }

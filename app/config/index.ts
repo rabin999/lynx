@@ -12,9 +12,8 @@ const configurations: any = {
 }
 
 const environment = process.env.APP_ENVIRONMENT
-
 if (!(environment in configurations)) {
-    throw new Error(lang);
+    throw new Error("Environment file not found");
 }
 
 export default configurations[environment]
