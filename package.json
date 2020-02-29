@@ -8,9 +8,9 @@
     "seed": "concurrently -k \"npm run build-ts\" \"node dist/services/database/seeder.js\"",
     "serve": "npx nodemon dist/bin/www/server.js",
     "watch-node": "nodemon dist/bin/www/server.js",
-    "test": "jest --colors --forceExit --verbose --detectOpenHandles",
+    "test": "env APP_ENVIRONMENT=development jest --colors --forceExit --verbose --detectOpenHandles",
     "test-coverage": "jest --colors --forceExit --coverage --verbose --detectOpenHandles",
-    "watch-test": "npm run test -- --watchAll",
+    "watch-test": "env APP_ENVIRONMENT=development npm run test -- --watchAll",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
@@ -22,8 +22,20 @@
     "prod": "env APP_ENVIRONMENT=production concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "author": "Rabin Bhandari <rabin.bhandari999@gmail.com>",
+  "contributors": [
+    {
+      "name": "Rabin Bhandari",
+      "email": "rabin.bhandari999@gmail.com"
+    }
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabin999/lynx"
+  },
   "keywords": [
+    "scalable architecture for enterprise",
+    "nodejs framework",
     "fastify",
     "security"
   ],
