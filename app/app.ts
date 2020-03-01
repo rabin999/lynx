@@ -29,13 +29,13 @@ const app = fastify({
         key: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-privkey.pem")),
         cert: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-cert.pem"))
     },
-    logger: true
+    logger: false
 })
 
 // Initalize Rate Limiting Middleware
 app.register(fastify_rate_limit, {
-    max: 100,
-    timeWindow: '1 minute'
+    max: 100000,
+    timeWindow: '2 minute'
 })
 
 /**

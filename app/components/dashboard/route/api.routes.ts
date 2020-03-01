@@ -27,7 +27,4 @@ function routes(fastify: any, opts: any, done: any) {
 }
 
 
-export default {
-    prefix: "dashboard",
-    routes
-}
+export default routes
