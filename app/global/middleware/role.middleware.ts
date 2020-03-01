@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from "express"
 import Unauthorized from "../exception/NotAuthorizedException"
+import { LynxRequest, LynxResponse } from "../service/route/types"
 
 const roleMiddleware = (roles: Array<String>, options: object = {}) => {
-    return (request: Request, response: Response, next: NextFunction) => {
+    return (request: LynxRequest, response: LynxResponse, next: any) => {
         /*
         * IF user is admin, pass
         * other-wise check user has excess to route or not
