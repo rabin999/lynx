@@ -1,6 +1,5 @@
-// add doc for readability
 export const pluck = (array: string[], key: string, spread: boolean = false): string[] => {
-    let values: string[] = []
+    const values: string[] = []
     if (array.length) {
         array.forEach((value: any) => {
             if ( value[`${key}`].length && values.indexOf(value[`${key}`]) == -1) {

@@ -15,7 +15,8 @@ class DashboardController {
                 description: "Hello description",
                 isOperational: true
             })
-            throw err
+            // throw err
+
             response.send("This is dashboard page")
         }
         catch (error) {
@@ -35,8 +36,7 @@ class DashboardController {
     create = async (request: LynxRequest, response: LynxResponse) => {
 
         try {
-            throw new Error("Hello world")
-            response.send("dashboard create page")
+            response.send(request.body)
         }
         catch (error) {
             const err = new HttpException({
