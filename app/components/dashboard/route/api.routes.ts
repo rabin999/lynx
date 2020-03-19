@@ -27,5 +27,4 @@ function routes(fastify: any, opts: any, done: any) {
     done()
 }
 
-
 export default routes

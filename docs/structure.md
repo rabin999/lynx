@@ -96,15 +96,15 @@ file structure.
 ```
 .
 ├── user
-│   ├── controller
-│   ├── dashboard.ts
-│   ├── dto
-│   ├── expection
-│   ├── interface
-│   ├── middleware
-│   ├── model
-│   ├── route
-│   └── util
+│   ├── controller      // include require controller files
+│   ├── dashboard.ts    // for future purpose
+│   ├── dto             // Data Transfer object files
+│   ├── expection       // component level exception file
+│   ├── interface       // component level interface file
+│   ├── middleware      // component level middleware file
+│   ├── model           // component level model or entity file
+│   ├── route           // component level route file
+│   └── util            // component level util file
 
 ```
 
@@ -146,8 +146,7 @@ and not global modules.
 
 ### Tests
 
-Tests live next to the modules they test. Tests for
-`shared/util/createStore.js` live in `shared/util/__tests__/createStore.test.js`.
+Tests reside on top level
 
 ```
 ├── test
