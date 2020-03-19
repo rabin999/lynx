@@ -9,7 +9,7 @@ class ExceptionParser {
      */
     public static parse (errors: any): object {
         if (typeof errors.message !== "string" && ExceptionParser.isMessageIterable(errors)) {
-            const errs = []
+            const errs = [];
             for (const error of errors.message) {
                 errs.push({
                     status: 422,
