@@ -1,8 +1,10 @@
 <!-- docs/_sidebar.md -->
 * [Getting Started](/)
-  * [Installation](install.md)
-  * [Configuration](config.md)
+  * [Installation](/#install)
+  * [Configuration](#configuration)
   * [Environment Variables](environment.md)
   * [Usage](usage?id=usage)
   * [Middleware](middleware?id=middleware)
+* [Folder Structure](/structure.md)
+  * [Src](config.md)
 * [Guide](guide.md "The greatest guide in the world")
