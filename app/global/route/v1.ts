@@ -2,7 +2,7 @@ import { readdir } from "fs";
 import * as path from "path";
 import FileNotFoundException from "../exception/FileNotFoundException";
 
-const MODULE_PATH = "../../modules"
+const MODULE_PATH = "../../components"
 
 export default function(fastify: any, opts: any, done: any) {
     // init all api routes without manuall including
