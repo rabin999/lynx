@@ -5,14 +5,14 @@ import fastify_rate_limit from "fastify-rate-limit"
 import { LynxRequest, LynxResponse } from "./global/service/route/types";
 
 // Bootstraping Global NameSpace for NodeJS
-declare global {    
+declare global {
     namespace NodeJS {
         interface Global {
-            root_path: string
+            [key: string]: string
         }
     }
 }
-global.root_path = path.resolve(__dirname)
+global.root_path = path.resolve(__dirname);
 
 // App Configuration file
 import config from "./config";
@@ -30,23 +30,23 @@ const app = fastify({
         cert: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-cert.pem"))
     },
     logger: false
-})
+});
 
 // Initalize Rate Limiting Middleware
 app.register(fastify_rate_limit, {
     max: 100000,
-    timeWindow: '2 minute'
-})
+    timeWindow: "1 minute"
+});
 
 /**
  * Routes
  */
 function initializeRoutes() {
-    app.get('/', async (request: LynxRequest, response: LynxResponse) => {
+    app.get("/", async (request: LynxRequest, response: LynxResponse) => {
         response.code(200).send({ status: "UP" })
-    })
-    app.register(healthRoute)
-    app.register(Routes, { prefix: "/v1" })
+    });
+    app.register(healthRoute);
+    app.register(Routes, { prefix: "/v1" });
     app.register(Routes, { prefix: "/v2" })
 }
 
@@ -54,10 +54,10 @@ function initializeRoutes() {
 if (!config.app.maintenance) {
     initializeRoutes()
 } else {
-    app.get('*', async (request: LynxRequest, response: LynxResponse) => {
+    app.get("*", async (request: LynxRequest, response: LynxResponse) => {
         response
             .code(200)
-            .header('Content-Type', 'text/html; charset=utf-8')
+            .header("Content-Type", "text/html; charset=utf-8")
             .send(`<h2>Application is under maintenance mode, try after ${(new Date()).toDateString()}</h2>`)
     })
 }

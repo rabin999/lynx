@@ -1,4 +1,2 @@
-export default interface HttpExceptionInterface {
-    parse() : any,
-    isMessageIterable() : boolean
-}
+// tslint:disable-next-line:no-empty-interface
+export default interface IHTTPExceptionInterface {}

@@ -1,9 +1,10 @@
 export interface HttpExceptionInterface {
-    parse() : any
+    parse(): any
 }
 
 export interface ParamsInterface {
-    status: number,
-    title?: string,
-    message: any
+    title: string,
+    statusCode: number,
+    description: string,
+    isOperational?: boolean
 }

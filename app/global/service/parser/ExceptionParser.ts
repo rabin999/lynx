@@ -1,26 +1,21 @@
 import ExceptionParserInterface from "../../interface/ExceptionParserInterface"
 
-class ExceptionParser implements ExceptionParserInterface {
-
-    public errors: any = ""
-
-    constructor ( errors: any ) {
-        this.errors = errors
-    }
+class ExceptionParser {
 
     /**
      * Parse instance of Error | array of error object
      *
      * @returns object
      */
-    parse (): object {
-        if (typeof this.errors.message !== "string" && this.isMessageIterable()) {
+    public static parse (errors: any): object {
+        if (typeof errors.message !== "string" && ExceptionParser.isMessageIterable(errors)) {
             const errs = []
-            for (const error of this.errors.message) {
+            for (const error of errors.message) {
                 errs.push({
                     status: 422,
                     title: typeof error.location !== undefined ? error.location : "",
-                    message: typeof error.msg !== undefined ? error.msg : ""
+                    description: typeof error.description !== undefined ? error.description : "",
+                    isOperational: typeof error.isOperational !== undefined ? error.isOperational : "",
                 })
             }
 
@@ -31,16 +26,17 @@ class ExceptionParser implements ExceptionParserInterface {
         else {
             return {
                 error: {
-                    status: this.errors.status ? this.errors.status : "",
-                    title: this.errors.title ? this.errors.title : "",
-                    message: this.errors.message,
+                    title: errors.title ? errors.title : "",
+                    statusCode: errors.statusCode ? errors.statusCode : "",
+                    description: errors.description,
+                    isOperational: errors.isOperational,
                 }
             }
         }
     }
 
-    isMessageIterable(): boolean {
-        return this.errors.message && typeof this.errors.message[Symbol.iterator] === "function"
+    public static isMessageIterable(errors: any): boolean {
+        return errors.message && typeof errors.message[Symbol.iterator] === "function"
     }
 }
 
