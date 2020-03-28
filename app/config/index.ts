@@ -1,10 +1,12 @@
-import development from "./envrionments/development"
-import staging from "./envrionments/staging"
-import qa from "./envrionments/qa"
-import production from "./envrionments/production"
+import local from "./envrionments/local";
+import development from "./envrionments/development";
+import staging from "./envrionments/staging";
+import qa from "./envrionments/qa";
+import production from "./envrionments/production";
 
 
 const configurations: any = {
+    local,
     development,
     staging,
     qa,
@@ -12,7 +14,8 @@ const configurations: any = {
 }
 
 
-const environment: string = <string>process.env.APP_ENVIRONMENT
+const environment: string = <string>process.env.NODE_ENV;
+console.log(process.env.NODE_ENV)
 if (!(environment in configurations)) {
     throw new Error("Environment file not found");
 }

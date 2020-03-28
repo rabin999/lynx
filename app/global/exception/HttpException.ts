@@ -3,7 +3,7 @@ import { HttpExceptionInterface, ParamsInterface } from "../interface/HttpExcept
 
 class HttpException extends Error implements HttpExceptionInterface {
 
-    public readonly params: any
+    public readonly params: any;
     public readonly options: any;
 
     /**
@@ -13,7 +13,6 @@ class HttpException extends Error implements HttpExceptionInterface {
     constructor(params: ParamsInterface, options: any = {}) {
         super(params.description);
         Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
-        console.log(params.isOperational)
         params.isOperational = params.isOperational ? params.isOperational : false
         this.params = params;
         this.options = options;
@@ -28,4 +27,3 @@ class HttpException extends Error implements HttpExceptionInterface {
 }
 
 export default HttpException
-

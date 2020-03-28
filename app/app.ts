@@ -18,7 +18,7 @@ global.root_path = path.resolve(__dirname);
 import config from "./config";
 
 // Global Routes
-import Routes from "./global/route/v1"
+import Routes from "./global/route"
 import healthRoute from "./global/route/health"
 
 // Inialize App
@@ -46,8 +46,7 @@ function initializeRoutes() {
         response.code(200).send({ status: "UP" })
     });
     app.register(healthRoute);
-    app.register(Routes, { prefix: "/v1" });
-    app.register(Routes, { prefix: "/v2" })
+    app.register(Routes);
 }
 
 // Global Maintenance Mode

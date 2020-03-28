@@ -24,8 +24,9 @@ export default function(fastify: any, opts: any, done: any) {
              * Dynamically import all routes
              * https://v8.dev/features/dynamic-import
              */
-            import(pathDir).then(ModuleRoute => {
-                fastify.register(ModuleRoute.default, { prefix: `/${item}` })
+            import(pathDir).then(moduleRoutes => {
+                const prefix = !!moduleRoutes.default.prefix ? `/${moduleRoutes.default.prefix}` : `/${item}`; 
+                fastify.register(moduleRoutes.default.routes, { prefix })
             })
             .catch(err => {
                 console.warn("Can't find route file %s", err.toString())
