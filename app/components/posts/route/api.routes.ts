@@ -2,7 +2,7 @@ import DashboardController from "../controller/dashboard.controller"
 import HttpException from "../../../global/exception/HttpException"
 import { LynxRequest, LynxResponse } from "../../../global/service/route/types"
 
-function routes(fastify: any, opts: any, done: any) {
+function postRoutes(fastify: any, opts: any, done: any) {
     // this._route.get("/", RoleMiddleware(["admin"]), new DashboardController().index)
     fastify.get("/", {
         onRequest: function (request: LynxRequest, reply: LynxResponse, done: any) {
@@ -27,4 +27,6 @@ function routes(fastify: any, opts: any, done: any) {
     done()
 }
 
-export default routes
+export default {
+    routes: postRoutes
+}

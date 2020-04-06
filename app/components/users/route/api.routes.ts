@@ -1,5 +1,4 @@
-import HttpException from "../../../global/exception/HttpException"
-import DatabaseController from "../controller/database.controller"
+import DatabaseController from "../controller/user.controller"
 
 function userRoutes(fastify: any, opts: any, done: any) {
     
@@ -8,7 +7,6 @@ function userRoutes(fastify: any, opts: any, done: any) {
 
     done();
 }
-
 
 export default {
     routes: userRoutes

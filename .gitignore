@@ -70,10 +70,18 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+yarn.lock
 
 # dotenv environment variables file
 .env
+.env.local
 .env.test
+.env.development
+.env.production
+.env.staging
+
+# backup file
+backup.zip
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

@@ -29,10 +29,10 @@ function runServerOnCLuster(): void {
 function startServer(): void {
     app.listen(config.app.port, (err, address) => {
         console.log(
-            "App is running on %s:%d in %s mode",
+            "App is running on %s:%d in %s environment",
             "localhost",
             config.app.port,
-            process.env.APP_ENVIRONMENT
+            process.env.NODE_ENV
         )
 
         if (err) {

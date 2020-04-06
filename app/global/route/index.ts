@@ -2,14 +2,14 @@ import { readdir } from "fs";
 import * as path from "path";
 import FileNotFoundException from "../exception/FileNotFoundException";
 
-const MODULE_PATH = "../../components"
+const MODULE_PATH = path.resolve(__dirname, "../../components");
 
 export default function(fastify: any, opts: any, done: any) {
     // init all api routes without manuall including
     readdir(path.resolve(__dirname, MODULE_PATH), (err, items) => {
 
         if (err) {
-            throw new FileNotFoundException("Folder doesn't exist");
+            throw new FileNotFoundException("Component Folder doesn't exist");
         }
 
         items.forEach(item => {
@@ -25,7 +25,7 @@ export default function(fastify: any, opts: any, done: any) {
              * https://v8.dev/features/dynamic-import
              */
             import(pathDir).then(moduleRoutes => {
-                const prefix = !!moduleRoutes.default.prefix ? `/${moduleRoutes.default.prefix}` : `/${item}`; 
+                const prefix = !!moduleRoutes.default.prefix ? `/${moduleRoutes.default.prefix}` : `/${item}`;
                 fastify.register(moduleRoutes.default.routes, { prefix })
             })
             .catch(err => {

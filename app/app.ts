@@ -3,6 +3,12 @@ import path from "path"
 import fastify from "fastify"
 import fastify_rate_limit from "fastify-rate-limit"
 import { LynxRequest, LynxResponse } from "./global/service/route/types";
+import dotenv from "dotenv";
+
+// Initializing DotEnv
+dotenv.config({ 
+    path: process.env.NODE_ENV ? path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`) : path.resolve(__dirname, `../.env`)
+});
 
 // Bootstraping Global NameSpace for NodeJS
 declare global {

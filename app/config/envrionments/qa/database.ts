@@ -1,15 +1,9 @@
-import DatabaseConfigInterface from "../../interface/database"
+import { MongoDBConfigInterface } from "../../interface/database"
 
-const database: DatabaseConfigInterface = {
-    host: "localhost",
-    port: 3306,
-    user: "employee",
-    password: "password@1",
-    database: "employees",
-    debug: true,
-    pool: {
-        min: 25
-    }
+const database: MongoDBConfigInterface = {
+    url: process.env.DB_URL,
+    name: process.env.DB_NAME,
+    debug: true
 }
 
 export default database
