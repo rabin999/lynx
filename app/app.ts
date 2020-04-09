@@ -4,11 +4,15 @@ import fastify from "fastify"
 import fastify_rate_limit from "fastify-rate-limit"
 import { LynxRequest, LynxResponse } from "./global/service/route/types";
 import dotenv from "dotenv";
+import { init } from "@sentry/node";
 
 // Initializing DotEnv
-dotenv.config({ 
+dotenv.config({
     path: process.env.NODE_ENV ? path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`) : path.resolve(__dirname, `../.env`)
 });
+
+// init sentry
+init({ dsn: "https://1d52a185eb0245f8a0d442e65199711a@o374893.ingest.sentry.io/5193584" })
 
 // Bootstraping Global NameSpace for NodeJS
 declare global {
@@ -32,8 +36,8 @@ const app = fastify({
     http2: true,
     https: {
         allowHTTP1: true,   // fallback support for HTTP1
-        key: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-privkey.pem")),
-        cert: fs.readFileSync(path.join(__dirname, "..", "ssl_certificate", "localhost-cert.pem"))
+        key: fs.readFileSync(path.join(__dirname, process.env.PRIV_KEY)),
+        cert: fs.readFileSync(path.join(__dirname, process.env.CERT))
     },
     logger: true
 });
