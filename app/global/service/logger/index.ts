@@ -2,7 +2,7 @@ import { createLogger, format, transports } from "winston";
 import path from "path";
 
 // Log formatting
-const { combine, timestamp, prettyPrint, colorize } = format;
+const { combine, timestamp, prettyPrint, colorize, align } = format;
 
 // log file location
 const info_log_path = path.resolve(global.root_path, "../logs/info.log");
@@ -22,7 +22,8 @@ const error_log_path = path.resolve(global.root_path, "../logs/error.log");
 const logger = createLogger({
   format: combine(
     timestamp(),
-    prettyPrint()
+    prettyPrint(),
+    align()
   ),
   levels: {
     error: 0,

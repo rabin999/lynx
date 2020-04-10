@@ -41,7 +41,13 @@ app.register(fastify_rate_limit, {
  */
 function initializeRoutes() {
     app.get("/", async (request: LynxRequest, response: LynxResponse) => {
-        logger.debug(a.message)
+        logger.debug("Requesting root path", {
+            method: request.headers[":method"],
+            host: request.headers[":authority"],
+            scheme: request.headers[":scheme"],
+            path: request.headers[":path"],
+        });
+
         response.code(200).send({ status: "UP" })
     });
     app.register(healthRoute);
