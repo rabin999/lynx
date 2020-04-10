@@ -2,6 +2,7 @@ interface DatabaseConfigInterface {
     user?: string;
     password?: string;
     name?: string;
+    port?: number;
     debug: boolean;
     pool?: {
         min?: number;

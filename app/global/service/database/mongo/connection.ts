@@ -1,5 +1,5 @@
 import { MongoClient, Logger } from "mongodb";
-import config from "../../../../config"
+import config from "../../../../config";
 
 // Use connect method to connect to the Server
 const db = async function () {

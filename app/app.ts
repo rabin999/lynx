@@ -3,26 +3,8 @@ import path from "path"
 import fastify from "fastify"
 import fastify_rate_limit from "fastify-rate-limit"
 import { LynxRequest, LynxResponse } from "./global/service/route/types";
-import dotenv from "dotenv";
-import { init } from "@sentry/node";
-
-// Initializing DotEnv
-dotenv.config({
-    path: process.env.NODE_ENV ? path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`) : path.resolve(__dirname, `../.env`)
-});
-
-// init sentry
-init({ dsn: "https://1d52a185eb0245f8a0d442e65199711a@o374893.ingest.sentry.io/5193584" })
-
-// Bootstraping Global NameSpace for NodeJS
-declare global {
-    namespace NodeJS {
-        interface Global {
-            [key: string]: string
-        }
-    }
-}
-global.root_path = path.resolve(__dirname);
+import "./bootstrap";
+import logger from "./global/service/logger";
 
 // App Configuration file
 import config from "./config";
@@ -30,6 +12,12 @@ import config from "./config";
 // Global Routes
 import Routes from "./global/route"
 import healthRoute from "./global/route/health"
+
+
+const a = new Error("test");
+// throw a;
+
+
 
 // Inialize App
 const app = fastify({
@@ -39,7 +27,7 @@ const app = fastify({
         key: fs.readFileSync(path.join(__dirname, process.env.PRIV_KEY)),
         cert: fs.readFileSync(path.join(__dirname, process.env.CERT))
     },
-    logger: true
+    logger: false
 });
 
 // Initalize Rate Limiting Middleware
@@ -53,6 +41,7 @@ app.register(fastify_rate_limit, {
  */
 function initializeRoutes() {
     app.get("/", async (request: LynxRequest, response: LynxResponse) => {
+        logger.debug(a.message)
         response.code(200).send({ status: "UP" })
     });
     app.register(healthRoute);
@@ -70,6 +59,5 @@ if (!config.app.maintenance) {
             .send(`<h2>Application is under maintenance mode, try after ${(new Date()).toDateString()}</h2>`)
     })
 }
-
 
 export default app
