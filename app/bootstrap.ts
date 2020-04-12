@@ -9,7 +9,7 @@ dotenv.config({
 
 // Init sentry
 if (process.env.NODE_ENV === "production") {
-  init({ dsn: "https://1d52a185eb0245f8a0d442e65199711a@o374893.ingest.sentry.io/5193584" })
+  init({ dsn: process.env.SENTRY_DSN })
 }
 
 // Bootstraping Global NameSpace for NodeJS

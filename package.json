@@ -42,6 +42,7 @@
   ],
   "dependencies": {
     "@sentry/node": "^5.15.4",
+    "@types/graylog2": "^0.2.0",
     "@types/heapdump": "^0.3.1",
     "@types/mongodb": "^3.5.4",
     "@types/pino": "^5.15.1",
@@ -52,11 +53,13 @@
     "fastify": "^2.11.0",
     "fastify-helmet": "^3.0.2",
     "fastify-rate-limit": "^3.0.1",
+    "graylog2": "^0.2.1",
     "lusca": "^1.6.1",
     "mongodb": "^3.5.5",
     "pino": "^5.15.0",
     "typescript": "^3.7.4",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "winston-graylog2": "^2.1.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
