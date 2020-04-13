@@ -9,7 +9,7 @@ dotenv.config({
 
 // Init sentry
 if (process.env.NODE_ENV === "production") {
-  init({ dsn: process.env.SENTRY_DSN })
+  init({ dsn: process.env.SENTRY_DSN });
 }
 
 // Bootstraping Global NameSpace for NodeJS
@@ -20,4 +20,4 @@ declare global {
     }
   }
 }
-global.root_path = path.resolve(__dirname);
+global.root_path = path.resolve(__dirname, "../");

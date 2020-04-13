@@ -4,8 +4,7 @@ import fastify from "fastify";
 import fastify_rate_limit from "fastify-rate-limit";
 import { LynxRequest, LynxResponse } from "./global/service/route/types";
 import "./bootstrap";
-import logger, { graylog } from "./global/service/logger";
-
+import logger from "./global/service/logger";
 
 // App Configuration file
 import config from "./config";
@@ -39,7 +38,7 @@ app.register(fastify_rate_limit, {
 function initializeRoutes() {
   app.get("/", async (request: LynxRequest, response: LynxResponse) => {
     try {
-      logger.debug("playing with logger version 22 changed", {
+      logger.debug("playing with demo logger versino", {
         metadata: {
           method: request.headers[":method"],
           host: request.headers[":authority"],
@@ -48,7 +47,7 @@ function initializeRoutes() {
         }
       });
 
-      throw new Error("unable to connect mongo do url");
+      // throw new Error("unable to connect mongo do url");
       response.code(200).send({ status: "UP" });
 
     } catch (e) {

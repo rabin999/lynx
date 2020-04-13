@@ -6,9 +6,9 @@
   "scripts": {
     "seed": "concurrently -k \"npm run build-ts\" \"node dist/services/database/seeder.js\"",
     "watch-node": "npx nodemon dist/bin/www/server.js",
-    "test": "env NODE_ENV=development jest --colors --forceExit --verbose --detectOpenHandles",
+    "test": "env NODE_ENV=local jest --colors --forceExit --verbose --detectOpenHandles",
     "test-coverage": "jest --colors --forceExit --coverage --verbose --detectOpenHandles",
-    "watch-test": "env NODE_ENV=development npm run test -- --watchAll",
+    "watch-test": "env NODE_ENV=local npm run test -- --watchAll",
     "build-ts": "rm -rf ./dist/ && tsc",
     "watch-ts": "rm -rf ./dist/ && tsc -w",
     "tslint": "npx tslint -c tslint.json -p tsconfig.json",
