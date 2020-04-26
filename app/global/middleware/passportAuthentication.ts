@@ -4,7 +4,7 @@ import NotAuthorized from "../exception/NotAuthorizedException"
 import passport from "passport"
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate('bearer', {session: false}, function(err, user, info) {
+    passport.authenticate("bearer", {session: false}, function(err, user, info) {
         if (err) {
             const error = new HttpException({
                 status: 401,
@@ -13,13 +13,13 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
             return res.status(401).json(error.parse())
         }
 
-        //authentication error
+        // authentication error
         if (!user) {
             const error = new NotAuthorized()
             return res.status(401).json(error.parse())
         }
 
-        //success
+        // success
         req.login(user, function(err) {
             if (err) {
                 const error = new HttpException({

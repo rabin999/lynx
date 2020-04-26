@@ -2,7 +2,7 @@ export interface HttpExceptionInterface {
     parse(): any
 }
 
-export interface ParamsInterface {
+export interface HTTPExceptionParamsInterface {
     title: string,
     statusCode: number,
     description: string,

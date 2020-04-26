@@ -7,7 +7,7 @@ class FileNotFoundException extends HttpException {
      */
     constructor(message?: string) {
 
-        const msg: string = message ? message : 'File not found'
+        const msg: string = message ? message : "File not found"
 
         super({
             status: 404,

@@ -5,11 +5,11 @@ import db from "../../../global/service/database/mongo/connection";
 class UserController {
     async index(request: LynxRequest, response: LynxResponse) {
         try {
-            const listings = await (await db).collection('listings').find().limit(15).toArray();
+            const listings = await (await db).collection("listings").find().limit(15).toArray();
             response.send(listings);
         }
         catch (error) {
-            console.warn(error)
+            console.warn(error);
             response.send(error)
         }
     }

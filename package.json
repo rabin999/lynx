@@ -5,13 +5,13 @@
   "main": "app.js",
   "scripts": {
     "seed": "concurrently -k \"npm run build-ts\" \"node dist/services/database/seeder.js\"",
-    "watch-node": "npx nodemon dist/bin/www/server.js",
-    "test": "env NODE_ENV=development jest --colors --forceExit --verbose --detectOpenHandles",
+    "test": "env NODE_ENV=local jest --colors --forceExit --verbose --detectOpenHandles",
     "test-coverage": "jest --colors --forceExit --coverage --verbose --detectOpenHandles",
-    "watch-test": "env NODE_ENV=development npm run test -- --watchAll",
+    "watch-test": "env NODE_ENV=local npm run test -- --watchAll",
     "build-ts": "rm -rf ./dist/ && tsc",
     "watch-ts": "rm -rf ./dist/ && tsc -w",
     "tslint": "npx tslint -c tslint.json -p tsconfig.json",
+    "tslint-fix": "npx tslint -c tslint.json -p tsconfig.json --fix",
     "prettier:base": "npx prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base --list-different \"app/**/*.ts\"",
     "prettier:write": "npm run prettier:base --write \"app/**/*.ts\"",
@@ -40,20 +40,30 @@
     "fastify",
     "security"
   ],
+  "_moduleAliases": {
+    "@environments": "dist/config/environments"
+  },
   "dependencies": {
+    "@sentry/node": "^5.15.4",
+    "@types/graylog2": "^0.2.0",
     "@types/heapdump": "^0.3.1",
     "@types/mongodb": "^3.5.4",
     "@types/pino": "^5.15.1",
+    "@types/winston": "^2.4.4",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "depcheck": "^0.9.2",
     "fastify": "^2.11.0",
     "fastify-helmet": "^3.0.2",
     "fastify-rate-limit": "^3.0.1",
+    "graylog2": "^0.2.1",
     "lusca": "^1.6.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.5.5",
     "pino": "^5.15.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "winston": "^3.2.1",
+    "winston-graylog2": "^2.1.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",

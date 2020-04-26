@@ -14,7 +14,7 @@ export let options = {
 };
 
 export default function () {
-    check(http.get("https://localhost:8000/users"), {
+    check(http.get("https://localhost:8000"), {
         "status is 200": (r) => r.status == 200,
         "protocol is HTTP/2": (r) => r.proto == "HTTP/2.0",
     });

@@ -15,7 +15,7 @@ class ExceptionParser {
                     status: 422,
                     title: typeof error.location !== undefined ? error.location : "",
                     description: typeof error.description !== undefined ? error.description : "",
-                    isOperational: typeof error.isOperational !== undefined ? error.isOperational : "",
+                    isOperational: typeof error.isOperational !== undefined ? error.isOperational : false,
                 })
             }
 
@@ -26,10 +26,10 @@ class ExceptionParser {
         else {
             return {
                 error: {
-                    title: errors.title ? errors.title : "",
+                    title: errors.title ? errors.title : errors.message,
                     statusCode: errors.statusCode ? errors.statusCode : "",
-                    description: errors.description,
-                    isOperational: errors.isOperational,
+                    description: errors.description ? errors.description : errors.stack,
+                    isOperational: typeof errors.isOperational !== undefined ? errors.isOperational : false,
                 }
             }
         }

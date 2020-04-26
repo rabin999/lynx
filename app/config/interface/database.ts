@@ -1,21 +1,22 @@
 interface DatabaseConfigInterface {
-    user?: string;
-    password?: string;
-    name?: string;
+    readonly user?: string;
+    readonly password?: string;
+    readonly name?: string;
+    readonly port?: number;
     debug: boolean;
-    pool?: {
+    readonly pool?: {
         min?: number;
         max?: number;
     };
 }
 
 export interface MySQLConfigInterface extends DatabaseConfigInterface {
-    host: string;
-    port: number;
-    engine?: string;
+    readonly host: string;
+    readonly port: number;
+    readonly engine?: string;
 }
 
 
 export interface MongoDBConfigInterface extends DatabaseConfigInterface {
-    url: string;
+    readonly url: string;
 }

@@ -1,5 +1,5 @@
 import ExceptionParser from "../service/parser/ExceptionParser"
-import { HttpExceptionInterface, ParamsInterface } from "../interface/HttpException.interface"
+import { HttpExceptionInterface, HTTPExceptionParamsInterface } from "../interface/HttpException.interface"
 
 class HttpException extends Error implements HttpExceptionInterface {
 
@@ -10,7 +10,7 @@ class HttpException extends Error implements HttpExceptionInterface {
      * @param  {object} params
      * @param options
      */
-    constructor(params: ParamsInterface, options: any = {}) {
+    constructor(params: HTTPExceptionParamsInterface, options: any = {}) {
         super(params.description);
         Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
         params.isOperational = params.isOperational ? params.isOperational : false
