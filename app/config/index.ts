@@ -1,7 +1,7 @@
-import local from "./envrionments/local";
-import staging from "./envrionments/staging";
-import qa from "./envrionments/qa";
-import production from "./envrionments/production";
+import local from "@environments/local";
+import staging from "@environments/staging";
+import qa from "@environments/qa";
+import production from "@environments/production";
 import MasterConfigInterface from "./interface/master";
 
 const configurations: MasterConfigInterface = {

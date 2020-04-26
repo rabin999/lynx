@@ -5,13 +5,13 @@
   "main": "app.js",
   "scripts": {
     "seed": "concurrently -k \"npm run build-ts\" \"node dist/services/database/seeder.js\"",
-    "watch-node": "npx nodemon dist/bin/www/server.js",
     "test": "env NODE_ENV=local jest --colors --forceExit --verbose --detectOpenHandles",
     "test-coverage": "jest --colors --forceExit --coverage --verbose --detectOpenHandles",
     "watch-test": "env NODE_ENV=local npm run test -- --watchAll",
     "build-ts": "rm -rf ./dist/ && tsc",
     "watch-ts": "rm -rf ./dist/ && tsc -w",
     "tslint": "npx tslint -c tslint.json -p tsconfig.json",
+    "tslint-fix": "npx tslint -c tslint.json -p tsconfig.json --fix",
     "prettier:base": "npx prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base --list-different \"app/**/*.ts\"",
     "prettier:write": "npm run prettier:base --write \"app/**/*.ts\"",
@@ -40,6 +40,9 @@
     "fastify",
     "security"
   ],
+  "_moduleAliases": {
+    "@environments": "dist/config/environments"
+  },
   "dependencies": {
     "@sentry/node": "^5.15.4",
     "@types/graylog2": "^0.2.0",
@@ -55,6 +58,7 @@
     "fastify-rate-limit": "^3.0.1",
     "graylog2": "^0.2.1",
     "lusca": "^1.6.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.5.5",
     "pino": "^5.15.0",
     "typescript": "^3.7.4",

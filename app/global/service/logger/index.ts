@@ -43,10 +43,9 @@ if (!!config.logger.rotate_using_date) {
 * */
 
 if (config.logger.logs.levels && config.logger.logs.levels.length) {
-
   config.logger.logs.levels.forEach((level: string) => {
     const filename = rotate_using_date ? `${rotate_using_date}-${level}.log` : `${level}.log`;
-    const info_log_path = path.resolve(global.root_path, root_path, filename);
+    const info_log_path = path.resolve("./", root_path, filename);
 
     transporters.push(
       new transports.File({ filename: info_log_path, level })
@@ -55,9 +54,9 @@ if (config.logger.logs.levels && config.logger.logs.levels.length) {
 
 } else {
 
-  const info_log_path = path.resolve(global.root_path, "logs/", rotate_using_date ? `${rotate_using_date}-info.log` : `info.log`);
-  const debug_log_path = path.resolve(global.root_path, "logs/", rotate_using_date ? `${rotate_using_date}-debug.log` : `debug.log`);
-  const error_log_path = path.resolve(global.root_path, "logs/", rotate_using_date ? `${rotate_using_date}-error.log` : `error.log`);
+  const info_log_path = path.resolve("./", "logs/", rotate_using_date ? `${rotate_using_date}-info.log` : `info.log`);
+  const debug_log_path = path.resolve("./", "logs/", rotate_using_date ? `${rotate_using_date}-debug.log` : `debug.log`);
+  const error_log_path = path.resolve("./", "logs/", rotate_using_date ? `${rotate_using_date}-error.log` : `error.log`);
 
   transporters.push(
     new transports.File({ filename: info_log_path, level: "info" }),

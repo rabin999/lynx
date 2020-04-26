@@ -1,9 +1,10 @@
+import "module-alias/register";
 import app from "../../app"
 import config from "../../config"
 import cluster from "cluster";
 import os from "os";
 
-function runServerOnCLuster(): void {
+function runServerOnCluster(): void {
     const numCPUs = os.cpus().length
 
     if (cluster.isMaster) {
@@ -13,6 +14,10 @@ function runServerOnCLuster(): void {
         for (let i = 0; i < numCPUs; i++) {
             cluster.fork();
         }
+
+        const line = "=".repeat(30)
+        const consoleMessage = "Application is running under cluster mode"
+        console.log(`%s\n %s\n%s\n`, line, consoleMessage, line)
 
         cluster.on("exit", (worker: any, code: any, signal: any) => {
             console.log(`worker ${worker.process.pid} died`);
@@ -45,11 +50,7 @@ function startServer(): void {
 }
 
 if (config.app.enableCluster) {
-    runServerOnCLuster()
-
-    const line = "============================================"
-    const consoleMessage = "Application is running under cluster mode"
-    console.log(`%s\n %s\n%s\n`, line, consoleMessage, line)
+    runServerOnCluster()
 } else {
     startServer()
 }

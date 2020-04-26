@@ -1,6 +1,7 @@
+import path from "path";
+
 // Initializing DotEnv
 import dotenv from "dotenv";
-import path from "path";
 import { init } from "@sentry/node";
 
 dotenv.config({
@@ -20,4 +21,4 @@ declare global {
     }
   }
 }
-global.root_path = path.resolve(__dirname, "../");
+// global.root_path = path.resolve(__dirname, "../");

@@ -19,8 +19,8 @@ const app = fastify({
   http2: true,
   https: {
     allowHTTP1: true,   // fallback support for HTTP1
-    key: fs.readFileSync(path.join(__dirname, process.env.PRIV_KEY)),
-    cert: fs.readFileSync(path.join(__dirname, process.env.CERT))
+    key: fs.readFileSync(path.join(__dirname, <string>process.env.PRIV_KEY)),
+    cert: fs.readFileSync(path.join(__dirname, <string>process.env.CERT))
   },
   logger: false
 });

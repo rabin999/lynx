@@ -2,15 +2,17 @@
     "compilerOptions": {
         "module": "commonjs",
         "esModuleInterop": true,
+        "noUnusedLocals": false,
         "target": "es2017",
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": false,
         "outDir": "./dist",
-        "baseUrl": "./",
+        "baseUrl": "./app",
         "resolveJsonModule": true,
         "extendedDiagnostics": true,
         "paths": {
+            "@environments/*": ["./config/environments/*"],
             "*": [
                 "node_modules/*"
             ]
